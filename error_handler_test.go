@@ -34,7 +34,7 @@ func TestCreate(t *testing.T) {
 		})
 
 		It("should return [panic]", func() {
-			app.Env = "prod"
+			app.Set("env", "prod")
 			app.Use(Create())
 			app.Use(func(req *f.Request, res *f.Response, next func()) {
 				panic("panic")
@@ -45,7 +45,7 @@ func TestCreate(t *testing.T) {
 		})
 
 		It("should return [34]", func() {
-			app.Env = "prod"
+			app.Set("env", "prod")
 			app.Use(Create())
 			app.Use(func(req *f.Request, res *f.Response, next func()) {
 				panic("panic")
@@ -57,7 +57,7 @@ func TestCreate(t *testing.T) {
 		})
 
 		It("should return [67]", func() {
-			app.Env = "prod"
+			app.Set("env", "prod")
 			app.Use(Create("Title"))
 			app.Use(func(req *f.Request, res *f.Response, next func()) {
 				panic("panic")
@@ -69,7 +69,7 @@ func TestCreate(t *testing.T) {
 		})
 
 		It("should return [{\"code\":\"500\",\"error\":\"panic\"}]", func() {
-			app.Env = "prod"
+			app.Set("env", "prod")
 			app.Use(Create())
 			app.Use(func(req *f.Request, res *f.Response, next func()) {
 				panic("panic")
