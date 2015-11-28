@@ -44,6 +44,18 @@ func TestCreate(t *testing.T) {
 			AssertEqual(w, "panic")
 		})
 
+		It("should return [runtime error: index out of range]", func() {
+			app.Set("env", "prod")
+			app.Use(Create())
+			app.Use(func(req *f.Request, res *f.Response, next func()) {
+				i := []string{}
+				res.End(i[1])
+			})
+			app.Handle(req, res, 0)
+			w := buf.String()
+			AssertEqual(w, "runtime error: index out of range")
+		})
+
 		It("should return [34]", func() {
 			app.Set("env", "prod")
 			app.Use(Create())
