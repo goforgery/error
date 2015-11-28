@@ -4,6 +4,10 @@
 
 Simple error handler for Forgery2.
 
+## Install
+
+	go get github.com/goforgery/error
+
 ## Use
 
 When running in the environment `prod` any calls to `panic()` will be caught and a 500 response will be returned. You can set the title of the 500 response by passing a string as the first argument to create.
